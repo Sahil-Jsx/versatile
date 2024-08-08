@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: TTF;
+  src: url("./assets/fonts/TTCPro-ed9ac02e.woff2");
+}
+
+* {
+  background-color: #d6e0ff;
+  margin-inline: 10px;
+  margin-top: 10px;
+  font-family: TTF;
+}
