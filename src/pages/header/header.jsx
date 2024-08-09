@@ -2,86 +2,65 @@ import React, { useState } from "react";
 import Components from "../../components/components";
 
 function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const items = [
+    { name: "Home", icon: <Components.Icons.Home /> },
+    { name: "Services", icon: <Components.Icons.HomeRepairServiceRounded /> },
+    { name: "About", icon: <Components.Icons.InfoRounded /> },
+    { name: "Projects", icon: <Components.Icons.DvrRounded /> },
+    { name: "Contact Us", icon: <Components.Icons.MailRounded /> },
+  ];
+
   return (
-    <header className="bg-white border-b-2 border-black">
-      <div className="container mx-auto flex justify-between items-center py-4">
-        {/* Logo */}
-        <div className="text-3xl font-extrabold uppercase">Versatile</div>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8">
-          <a href="#" className="text-black hover:text-gray-700">
-            Home
-          </a>
-          <a href="#" className="text-black hover:text-gray-700">
-            Features
-          </a>
-          <a href="#" className="text-black hover:text-gray-700">
-            Pricing
-          </a>
-          <a href="#" className="text-black hover:text-gray-700">
-            Contact
-          </a>
-        </nav>
-
-        {/* Get Started Button */}
-        <div className="hidden md:flex items-center bg-black text-white px-4 py-2 rounded-lg cursor-pointer">
-          Get Started
-          <Components.Icons.Rocket className="ml-3 mt-1" />
+    <>
+      <section className="mt-4 mx-4 sm:mt-8 sm:mx-4 md:mt-8 md:mx-6 lg:mt-8 lg:mx-8 bg-[#e7edff]">
+        <div className="flex justify-between border-black border-b-2">
+          <div className="font-extrabold text-3xl uppercase">Versitile</div>
+          <div className="flex justify-center">
+            <button
+              className="px-3 py-2 rounded-tr-2xl bg-black text-white"
+              onClick={toggleSidebar}
+            >
+              <Components.Icons.Menu />
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden flex items-center text-black"
-          onClick={toggleMenu}
+        {/* Sidebar Component */}
+        <div
+          className={`fixed inset-0 bg-black bg-opacity-80 flex flex-col justify-between p-5 transform transition-transform duration-300 ease-in-out ${
+            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+          <button
+            className="text-white text-lg self-end"
+            onClick={toggleSidebar}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-            ></path>
-          </svg>
-        </button>
-      </div>
-
-      {/* Mobile Navigation */}
-      {isOpen && (
-        <nav className="md:hidden">
-          <div className="flex flex-col items-center space-y-4 py-4">
-            <a href="#" className="text-black hover:text-gray-700">
-              Home
-            </a>
-            <a href="#" className="text-black hover:text-gray-700">
-              Features
-            </a>
-            <a href="#" className="text-black hover:text-gray-700">
-              Pricing
-            </a>
-            <a href="#" className="text-black hover:text-gray-700">
-              Contact
-            </a>
-            <div className="flex items-center bg-black text-white px-4 py-2 rounded-lg cursor-pointer">
-              Get Started
-              <Components.Icons.Rocket className="ml-3 mt-1" />
+            <Components.Icons.Close />
+          </button>
+          <div className="flex justify-center items-center h-full text-white">
+            <div className="grid grid-cols-2 gap-4">
+              {items.map((item, index) => (
+                <div key={index} className="group">
+                  <div className="max-w-[23ch] text-center bg-black bg-opacity-50 p-14 rounded relative overflow-hidden transition-all duration-300 ease-in-out flex flex-col justify-center items-center gap-4">
+                    <div className="icon">{item.icon}</div>
+                    <span className="absolute cursor-pointer inset-0 w-full h-full flex justify-center items-center bg-black font-bold rounded top-full transition-all duration-300 ease-in-out group-hover:top-0 group-hover:text-white">
+                      {item.name}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </nav>
-      )}
-    </header>
+        </div>
+      </section>
+    </>
   );
 }
 

@@ -8,8 +8,11 @@
 }
 
 * {
-  background-color: #d6e0ff;
-  margin-inline: 10px;
-  margin-top: 10px;
   font-family: TTF;
+}
+
+body {
+  /* margin-top: 10px; */
+  /* margin-inline: 10px; */
+  background-color: #e7edff;
 }
