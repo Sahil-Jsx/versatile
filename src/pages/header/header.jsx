@@ -34,7 +34,7 @@ function Header() {
 
         {/* Sidebar Component */}
         <div
-          className={`fixed inset-0 bg-black bg-opacity-80 flex flex-col justify-between p-5 transform transition-transform duration-300 ease-in-out ${
+          className={`fixed inset-0 bg-black bg-opacity-80 flex flex-col justify-between p-5 transform transition-transform duration-700 ease-in-in ${
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
