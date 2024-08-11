@@ -9,6 +9,7 @@ import FigmaIcon from "../../assets/svgs/figma";
 import JS from "../../assets/svgs/js";
 import TS from "../../assets/svgs/ts";
 import Mongo from "../../assets/svgs/mongo";
+import Marquee from "react-fast-marquee"; // Import the marquee library
 
 const icons = [
   { Component: PythonIcon, alt: "Python" },
@@ -25,17 +26,30 @@ const icons = [
 
 function List_View() {
   return (
-    <div className="mx-8 overflow-hidden whitespace-nowrap">
-      <div className="flex animate-marquee space-x-10">
+    <div className="relative overflow-hidden h-80 w-full space-y-8">
+      {/* First Marquee (Black & White with Hover Color Effect) */}
+      <Marquee gradient={false}>
         {icons.map(({ Component, alt }, index) => (
           <div
-            className="filter grayscale transition-all duration-300 hover:grayscale-0"
             key={index}
+            className="mx-4 transition duration-300 grayscale hover:grayscale-0"
           >
-            <Component height="80px" width="80px" alt={alt} />
+            <Component alt={alt} height="100px" width="100px" />
           </div>
         ))}
-      </div>
+      </Marquee>
+
+      {/* Second Marquee (Opposite Direction, Black & White with Hover Color Effect) */}
+      <Marquee gradient={false} direction="right">
+        {icons.map(({ Component, alt }, index) => (
+          <div
+            key={index}
+            className="mx-4 transition duration-300 grayscale hover:grayscale-0"
+          >
+            <Component alt={alt} height="100px" width="100px" />
+          </div>
+        ))}
+      </Marquee>
     </div>
   );
 }

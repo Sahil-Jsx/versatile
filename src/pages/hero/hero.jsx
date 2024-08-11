@@ -10,7 +10,7 @@ export default function Hero() {
         </div>
         <div className="page2"></div>
       </div>
-      <List_View />
+      <List_View mark="animate-marquee" />
     </>
   );
 }
